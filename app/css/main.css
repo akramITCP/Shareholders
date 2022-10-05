@@ -1,0 +1,41 @@
+#tree-list-demo {
+  min-height: 530px;
+}
+  
+#employees {
+  max-height: 530px;
+}
+
+.dx-link-icon {
+  color: #1DD67C !important;
+}
+
+.dx-treelist-addrow-button{
+  display: none;
+}
+
+.dx-header-row{
+  background-color:#e4e4e4;
+  color: #000;
+  font-weight: 700;
+}
+
+.dx-treelist-headers .dx-treelist-table .dx-row > td{
+  border-bottom: none ;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
+}
+
+.dx-treelist-rowsview .dx-row-removed > td {
+  background-color: #E5FBEF;
+  color: #000;
+}
+
+#table{
+  margin: 2em auto;
+}
+
+
+.dx-cell-modified:nth-child(4)::after  {
+  border: none!important;
+} 

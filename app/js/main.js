@@ -7,6 +7,7 @@ var isEuroFormat = null, masterLang = null;
 
 $(async () => {
     await SetPageLanguage();
+    InitTreeList(null)
     FetchData();
 });
 
@@ -48,6 +49,7 @@ async function FetchData() {
                     arrayData.push(aux);
                 }
                 InitTreeList(arrayData)
+
         } catch (e) {
             console.log(e);
           throw "No Share Capital found for this customer.";
@@ -112,8 +114,6 @@ function InitTreeList(ds) {
             },
             setCellValue: function(newData, value, currentRowData) {
                 var Parent_ds = ds.find((element) => element.ID == currentRowData.Parent_ID);
-                console.log(currentRowData);
-                console.log(newData);
                 newData.Shares = value;
                 newData.Total_Shares =  value/100 * Parent_ds.Total_Shares;
             },
@@ -132,27 +132,19 @@ function InitTreeList(ds) {
         },
         ],
         onInitNewRow(e) {
-            console.log("NewRow");
-            console.log(e); 
             let newObj = { ...e.data, Percent: 0.00, Total: 0}
             e.data.Total_Shares = parseFloat(newObj.Total);
             e.data.Shares = parseFloat(newObj.Percent);  
         },
         onRowInserted(e) {
-            console.log("RowInserted");
-            console.log(e);
             var datos = { ...e.data, Customer: ds[0].Customer.ID}
             AddRecord(datos)
         },
         onRowUpdated(e) {
-            console.log("RowUpdated");
-            console.log(e);
             var datos = { ...e.data, Customer: ds[0].Customer.ID}
             UpdateRecord(datos)
         },
         onRowRemoved(e) {
-            console.log("RowRemoved");
-            console.log(e);
             var datos = e.data;
             RemoveRecord(datos)
         },
@@ -191,9 +183,7 @@ function AddRecord(pdatos){
         } 
         
         ZOHO.CREATOR.API.addRecord(config).then(function(response){
-            console.log(response);
             if(response.code == 3000){
-                console.log("Record updated successfully");
                 Swal.fire(
                     masterLang.Save,
                     '',
@@ -232,9 +222,7 @@ function UpdateRecord(pdatos){
         } 
         
         ZOHO.CREATOR.API.updateRecord(config).then(function(response){
-            console.log(response);
             if(response.code == 3000){
-                console.log("Record updated successfully");
                 Swal.fire(
                     masterLang.Save,
                     '',
@@ -261,9 +249,7 @@ function RemoveRecord(pdatos){
             } 
             
             ZOHO.CREATOR.API.deleteRecord(config).then(function(response){
-                console.log(response);
              if(response.code == 3000){
-                 console.log("Record updated successfully");
                 }
                 Swal.fire(
                     masterLang.Save,

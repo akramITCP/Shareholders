@@ -1,11 +1,11 @@
 const de = {
     name: "Name",
     parent: "Elternteil",
-    isCompany: "IsCompany",
+    Type: "Art",
     Shares: "Aktien",
     TotalShares:"Insgesamt",
-    Company: "Persona Jurídica",
-    Person: "Persona Física",
+    Company: "juristische Person",
+    Person: "natürliche Person",
     Save:"Gespeichert",
     Error:"Fehler",    
 }
